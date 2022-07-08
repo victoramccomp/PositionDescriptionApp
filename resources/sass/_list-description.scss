@@ -1,0 +1,88 @@
+// ==============================================
+// List Description style
+// ==============================================
+
+@mixin is-clickable ( $block: flex ) {
+    display: #{$block};
+    border: none;
+  
+    align-items: center;
+  
+    font-size: 1em;
+    text-decoration: none;
+  
+    cursor: pointer;
+    user-select: none;
+}
+
+
+@mixin is-nav-link {
+    @include is-clickable();
+
+    appearance: none;
+    background-color: inherit;
+    color: inherit;
+    min {
+        width: 35px;
+    }
+}
+
+.dl {
+
+  dt {
+    @include is-nav-link();
+
+    position: relative;
+
+    padding: 15px;
+    background-color: #f5f5f5;
+    border: 1px solid #A9A9A9;
+    border-bottom-width: 0;
+    transition: .35s;
+
+    &::after {
+      $size: 5px;
+
+      content: '';
+
+      position: absolute;
+      top: 50%;
+      right: 15px;
+
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: $size solid #A9A9A9;
+      border-left: $size solid rgba(#fff, 0);
+      border-right: $size solid rgba(#fff, 0);
+
+      transition: .45s ease;
+    }
+
+    &.active {
+      border-bottom-width: 1px;
+
+      &::after { transform: rotate(90deg); }
+    }
+  }
+
+  dd {
+    $border: 1px solid #A9A9A9;
+
+    margin: 0;
+
+    height: 0;
+    overflow-y: hidden;
+    border-left: $border;
+    border-right: $border;
+
+    &:last-of-type {
+      border-bottom: $border;
+    }
+
+    > * {
+      margin: 0;
+      padding: 30px;
+    }
+  }
+}

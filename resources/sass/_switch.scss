@@ -1,0 +1,41 @@
+.switch {
+  $size: 25px;
+
+  position: relative;
+  
+  width: 50px;
+  height: $size;
+  background-color: #fff;
+  border: 1px solid #D9DADC;
+  border-radius: 50px;
+  box-shadow: inset -20px 0 0 0 #fff;
+  
+  outline: none;
+  appearance: none;
+
+  &:after {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+    left: 1px;
+
+    background: rgba(#fff, 0);
+    width: #{$size - 5};
+    height: #{$size - 5};
+    border-radius: 50%;
+    box-shadow: 2px 4px 6px rgba(0,0,0,0.2);
+
+    transform: translateY(-50%);
+  }
+
+  &:checked {
+    box-shadow: inset #{$size} 0 0 0 #4ed164;
+    border-color: #4ed164;
+
+    &:after {
+      left: calc(100% - #{$size - 5});
+      box-shadow: none;
+    }
+  }
+}
