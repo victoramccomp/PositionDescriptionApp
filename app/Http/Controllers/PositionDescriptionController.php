@@ -405,7 +405,9 @@ class PositionDescriptionController extends Controller
                         array_push( $dep_maintarget, [
                             'maintarget_id' => $target_id,
                             'mainactivity_id' => $newActivity->id,
-                            'classification' => $activity['classification']
+                            'classification' => $activity['classification'],
+                            'target_order' => $activity['target_order'],
+                            'acitivity_order' => $activity['activity_order'],
                         ]);
 
                     } else {
@@ -413,7 +415,9 @@ class PositionDescriptionController extends Controller
                         array_push( $dep_maintarget, [
                             'maintarget_id' => $target_id,
                             'mainactivity_id' => $activity['activity_id'],
-                            'classification' => $activity['classification']
+                            'classification' => $activity['classification'],
+                            'target_order' => $activity['target_order'],
+                            'acitivity_order' => $activity['activity_order'],
                         ]);
                     }
                 }
@@ -631,7 +635,9 @@ class PositionDescriptionController extends Controller
                         array_push( $dep_maintarget, [
                             'maintarget_id' => $target_id,
                             'mainactivity_id' => $newActivity->id,
-                            'classification' => $activity['classification']
+                            'classification' => $activity['classification'],
+                            'target_order' => $activity['target_order'],
+                            'acitivity_order' => $activity['activity_order'],
                         ]);
 
                     } else {
@@ -639,7 +645,9 @@ class PositionDescriptionController extends Controller
                         array_push( $dep_maintarget, [
                             'maintarget_id' => $target_id,
                             'mainactivity_id' => $activity['activity_id'],
-                            'classification' => $activity['classification']
+                            'classification' => $activity['classification'],
+                            'target_order' => $activity['target_order'],
+                            'acitivity_order' => $activity['activity_order'],
                         ]);
                     }
                 }

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class DEPMainTarget extends Pivot
 {
     protected $table = 'dep_maintarget';
-    protected $fillable = ['position_description_id', 'maintarget_id', 'mainactivity_id', 'classification'];
+    protected $fillable = ['position_description_id', 'maintarget_id', 'mainactivity_id', 'classification', 'activity_order', 'target_order'];
     public $timestamps = false;
     
     public function positionDescription()

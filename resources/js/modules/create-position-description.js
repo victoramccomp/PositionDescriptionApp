@@ -610,13 +610,15 @@ const init = () => {
                 activityData.push({
                     activity_id: tableActivity[j].querySelector('.activity-id').value,
                     activity: removeQuoteFromText(tableActivity[j].querySelector('.activity').value),
-                    classification: classification
+                    classification: classification,
+                    activity_order: tableActivity[j].querySelector('.activityorder').value,
                 });
             }
 
             targetData.push({
                 target_id: tableTarget[i].querySelector('.target-id').value,
                 target: removeQuoteFromText(tableTarget[i].querySelector('.target').value),
+                target_order: tableTarget[i].querySelector('.targetorder').value,
                 activities: activityData
             });
         }

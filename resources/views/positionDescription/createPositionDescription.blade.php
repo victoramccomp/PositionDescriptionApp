@@ -480,6 +480,17 @@
           <i class="btn btn-outline-danger far fa-trash-alt"></i>
         </div>
       </div>
+      {{-- Target Order --}}
+      <div class="col-md-12">
+        <label>Ordem do Objetivo</label>
+      </div>
+
+      <div class="input-group mb-3 col-md-12">
+        <div class="input-group-prepend">
+          <label class="input-group-text">Ordem do Objetivo</label>
+        </div>
+        <input type="number" min="0" class="form-control targetorder" name="targetorder" value="0" required>
+      </div>
 
       {{-- activity wrapper --}}
       <div class="wrapperactivity pl-3 pr-3 pt-3">
@@ -520,8 +531,19 @@
         </select>
       </div>
 
-    </div>
+      {{-- Activitie Order --}}
+      <div class="col-md-12">
+        <label>Ordem da Atividade</label>
+      </div>
 
+      <div class="input-group mb-3 col-md-12">
+        <div class="input-group-prepend">
+          <label class="input-group-text">Ordem da Atividade</label>
+        </div>
+        <input type="number" min="0" class="form-control activityorder" name="activityorder" value="0" required>
+      </div>
+
+    </div>
   </div>
 
   {{-- Comentários Adicionais --}}
