@@ -631,23 +631,23 @@ class PositionDescriptionController extends Controller
                         $newActivity->inserted_by = $user_id;
 
                         $newActivity->save();
-
+                        // var_dump($activity);
                         array_push( $dep_maintarget, [
                             'maintarget_id' => $target_id,
                             'mainactivity_id' => $newActivity->id,
                             'classification' => $activity['classification'],
                             'target_order' => $activity['target_order'],
-                            'acitivity_order' => $activity['activity_order'],
+                            'activity_order' => $activity['activity_order'],
                         ]);
 
                     } else {
-
+                        // var_dump($activity);
                         array_push( $dep_maintarget, [
                             'maintarget_id' => $target_id,
                             'mainactivity_id' => $activity['activity_id'],
                             'classification' => $activity['classification'],
                             'target_order' => $activity['target_order'],
-                            'acitivity_order' => $activity['activity_order'],
+                            'activity_order' => $activity['activity_order'],
                         ]);
                     }
                 }
@@ -733,6 +733,8 @@ class PositionDescriptionController extends Controller
                 $newDEPMainTarget->maintarget_id = $target['maintarget_id'];
                 $newDEPMainTarget->mainactivity_id = $target['mainactivity_id'];
                 $newDEPMainTarget->classification = $target['classification'];
+                $newDEPMainTarget->activity_order = $target['activity_order'];
+                $newDEPMainTarget->target_order = $target['target_order'];
 
                 $newDEPMainTarget->save();
             }
@@ -827,7 +829,10 @@ class PositionDescriptionController extends Controller
         $depGrades = DEPGrade::where('position_description_id', $positionDescriptionId)->get();
         $depLanguages = DEPLanguage::where('position_description_id', $positionDescriptionId)->get();
         $depCompetences = DEPCompetence::where('position_description_id', $positionDescriptionId)->get();
-        $depMainTargets = DEPMainTarget::where('position_description_id', $positionDescriptionId)->get();
+        $depMainTargets = DEPMainTarget::where('position_description_id', $positionDescriptionId)
+            // ->order('target_order', 'asc')
+            ->orderBy('activity_order', 'desc')
+            ->get();
 
         // Get data for Autocomplete and Select fields
         $positions = Position::all();
