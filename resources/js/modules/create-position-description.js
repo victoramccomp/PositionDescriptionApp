@@ -611,6 +611,7 @@ const init = () => {
                     activity_id: tableActivity[j].querySelector('.activity-id').value,
                     activity: removeQuoteFromText(tableActivity[j].querySelector('.activity').value),
                     classification: classification,
+                    target_order: tableTarget[i].querySelector('.targetorder').value,
                     activity_order: tableActivity[j].querySelector('.activityorder').value,
                 });
             }
@@ -618,7 +619,6 @@ const init = () => {
             targetData.push({
                 target_id: tableTarget[i].querySelector('.target-id').value,
                 target: removeQuoteFromText(tableTarget[i].querySelector('.target').value),
-                target_order: tableTarget[i].querySelector('.targetorder').value,
                 activities: activityData
             });
         }
@@ -632,7 +632,7 @@ const init = () => {
         data = Object.assign(data, {
             _token: CSRF_TOKEN
         });
-
+        
         let depstorage = '<div class="alert alert-warning"> ATENÇÃO - Caso ocorra algum erro, copie os dados abaixo e envie para o desenvolvedor!';
         depstorage += '<p>Posição: ' + data.position + '</p>';
         depstorage += '<p>Entrevistado: ' + data.interviewed + '</p>';
