@@ -286,7 +286,7 @@
     </div>
   @endif
 
-  {{-- Restrições --}}
+  {{-- Diretrizes da Posição --}}
   @if ( $positionDescriptions->restrictions != '' )
     <div class="print__break-line"></div>
 
@@ -295,7 +295,7 @@
     
       {{-- title --}}
       <div class="row">
-        <h2 class="mt-5 mb-3 col-md-12">Restrições da Posição</h2>
+        <h2 class="mt-5 mb-3 col-md-12">Diretrizes da Posição</h2>
       </div>
 
       <div class="containertarget mb-3 restrictions__container">{{ $positionDescriptions->restrictions }}</div>

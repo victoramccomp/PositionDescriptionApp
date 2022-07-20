@@ -281,7 +281,7 @@
             {{-- Restrictions --}}
             @if ($positionDescription->restrictions != '')
             <div style="margin-top: 10px">
-                <strong class="font-weight-bold">Restrições da Posição</strong>
+                <strong class="font-weight-bold">Diretrizes da Posição</strong>
                 <p class="restrictions__container" style="margin-top: 10px">{{ $positionDescription->restrictions }}</p>
             </div>
             @endif

@@ -525,7 +525,7 @@
           <option value="A">A</option>
         </select>
       </div>
-      
+
       {{-- Activitie Order --}}
       <div class="input-group mb-3 col-md-3">
         <div class="input-group-prepend">
@@ -552,7 +552,7 @@
 
       <div class="input-group mb-3 col-md-12">
         <div class="input-group-prepend">
-          <span class="input-group-text">Restrições da Posição</span>
+          <span class="input-group-text">Diretrizes da Posição</span>
         </div>
         <textarea class="form-control restrictions" name="restrictions"></textarea>
       </div>
