@@ -569,7 +569,9 @@ const init = () => {
                 activityData.push({
                     activity_id: tableActivity[j].querySelector('.activity-id').value,
                     activity: removeQuoteFromText(tableActivity[j].querySelector('.activity').value),
-                    classification: classification
+                    classification: classification,
+                    target_order: tableTarget[i].querySelector('.targetorder').value,
+                    activity_order: tableActivity[j].querySelector('.activityorder').value,
                 });
             }
 
@@ -813,7 +815,8 @@ const init = () => {
 
                 var activityId;
                 var activityDescription;
-                var activityClassification ;
+                var activityClassification;
+                var activityOrder;
 
                 // Get activity info from fields
                 for (let l = 0; l < fields[5].arr.length; l++) {
@@ -824,6 +827,7 @@ const init = () => {
                         activityDescription = fields[5].arr[l].description;
 
                         activityClassification = data.filter(row => row.mainactivity_id === activityId)[0].classification;
+                        activityOrder = data.filter(row => row.mainactivity_id === activityId)[0].activity_order;
                         break;
                     }
                 }
@@ -843,6 +847,7 @@ const init = () => {
                 newactivity.querySelector('.activity-id').value = activityId;
                 newactivity.querySelector('.activity').value = activityDescription;
                 newactivity.querySelector('select').value = activityClassification;
+                newactivity.querySelector('.activityorder').value = activityOrder;
 
                 wrapperactivity.insertAdjacentElement('afterbegin', newactivity);
 

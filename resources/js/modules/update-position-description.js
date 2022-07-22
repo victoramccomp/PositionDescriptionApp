@@ -570,7 +570,9 @@ const init = () => {
                 activityData.push({
                     activity_id: tableActivity[j].querySelector('.activity-id').value,
                     activity: removeQuoteFromText(tableActivity[j].querySelector('.activity').value),
-                    classification: classification
+                    classification: classification,
+                    target_order: tableTarget[i].querySelector('.targetorder').value,
+                    activity_order: tableActivity[j].querySelector('.activityorder').value,
                 });
             }
 
@@ -783,6 +785,7 @@ const init = () => {
         for (let i = 0; i < Object.keys(depMainTargets).length; i++) {
             var targetId;
             var targetDescription;
+            var targetOrder;
             var activityIds;
 
             // Get target info from fields
@@ -793,6 +796,8 @@ const init = () => {
                     activityIds = Object.values(depMainTargets)[i];
                     targetId = fields[4].arr[j].id;
                     targetDescription = fields[4].arr[j].description;
+                    targetOrder = data[0].target_order;
+                    
                     break;
                 }
             }
@@ -810,6 +815,7 @@ const init = () => {
             newtarget.classList.remove('d-none');
             newtarget.querySelector('.target-id').value = targetId;
             newtarget.querySelector('.target').value = targetDescription;
+            newtarget.querySelector('.targetorder').value = targetOrder;
             newtarget.querySelector('.addactivity').addEventListener('click', addActivity);
 
             // Retrive Activity from target
@@ -818,6 +824,7 @@ const init = () => {
                 var activityId;
                 var activityDescription;
                 var activityClassification ;
+                var activityOrder;
 
                 // Get activity info from fields
                 for (let l = 0; l < fields[5].arr.length; l++) {
@@ -828,6 +835,7 @@ const init = () => {
                         activityDescription = fields[5].arr[l].description;
 
                         activityClassification = data.filter(row => row.mainactivity_id === activityId)[0].classification;
+                        activityOrder = data.filter(row => row.mainactivity_id === activityId)[0].activity_order;
                         break;
                     }
                 }
@@ -847,6 +855,7 @@ const init = () => {
                 newactivity.querySelector('.activity-id').value = activityId;
                 newactivity.querySelector('.activity').value = activityDescription;
                 newactivity.querySelector('select').value = activityClassification;
+                newactivity.querySelector('.activityorder').value = activityOrder;
 
                 wrapperactivity.insertAdjacentElement('afterbegin', newactivity);
 

@@ -610,7 +610,9 @@ const init = () => {
                 activityData.push({
                     activity_id: tableActivity[j].querySelector('.activity-id').value,
                     activity: removeQuoteFromText(tableActivity[j].querySelector('.activity').value),
-                    classification: classification
+                    classification: classification,
+                    target_order: tableTarget[i].querySelector('.targetorder').value,
+                    activity_order: tableActivity[j].querySelector('.activityorder').value,
                 });
             }
 
@@ -630,7 +632,7 @@ const init = () => {
         data = Object.assign(data, {
             _token: CSRF_TOKEN
         });
-
+        
         let depstorage = '<div class="alert alert-warning"> ATENÇÃO - Caso ocorra algum erro, copie os dados abaixo e envie para o desenvolvedor!';
         depstorage += '<p>Posição: ' + data.position + '</p>';
         depstorage += '<p>Entrevistado: ' + data.interviewed + '</p>';

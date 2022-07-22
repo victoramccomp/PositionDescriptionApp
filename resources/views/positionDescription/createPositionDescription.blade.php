@@ -470,7 +470,7 @@
     <div class="containertarget mb-3 d-none">
 
       {{-- target --}}
-      <div class="input-group targetgroup">
+      <div class="input-group col-md-12 targetgroup">
         <div class="input-group-prepend">
           <label class="input-group-text">Objetivo</label>
         </div>
@@ -479,7 +479,18 @@
         <div class="input-group-append">
           <i class="btn btn-outline-danger far fa-trash-alt"></i>
         </div>
+
+        {{-- Target Order --}}
+
+        <div class="input-group mb-3 col-md-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text">Ordem do Objetivo</label>
+          </div>
+          <input type="number" min="0" class="form-control targetorder" name="targetorder" value="0" required>
+        </div>
+
       </div>
+
 
       {{-- activity wrapper --}}
       <div class="wrapperactivity pl-3 pr-3 pt-3">
@@ -495,7 +506,7 @@
     <div class="containeractivity d-none">
 
       {{-- activity --}}
-      <div class="input-group mb-3 activitygroup">
+      <div class="input-group mb-3 col-md-6 activitygroup">
         <div class="input-group-prepend">
           <label class="input-group-text">Atividade</label>
         </div>
@@ -507,7 +518,7 @@
       </div>
 
       {{-- classification --}}
-      <div class="input-group mb-3 ml-3" style="width: 290px">
+      <div class="input-group mb-3 ml-3 col-md-3" style="width: 290px">
         <div class="input-group-prepend">
           <label class="input-group-text">Classificação</label>
         </div>
@@ -520,8 +531,15 @@
         </select>
       </div>
 
-    </div>
+      {{-- Activitie Order --}}
+      <div class="input-group mb-3 col-md-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text">Ordem da Atividade</label>
+        </div>
+        <input type="number" min="0" class="form-control activityorder" name="activityorder" value="0" required>
+      </div>
 
+    </div>
   </div>
 
   {{-- Comentários Adicionais --}}
@@ -539,7 +557,7 @@
 
       <div class="input-group mb-3 col-md-12">
         <div class="input-group-prepend">
-          <span class="input-group-text">Restrições da Posição</span>
+          <span class="input-group-text">Diretrizes da Posição</span>
         </div>
         <textarea class="form-control restrictions" name="restrictions"></textarea>
       </div>

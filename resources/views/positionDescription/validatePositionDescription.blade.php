@@ -476,6 +476,15 @@
         <div class="input-group-append">
           <i class="btn btn-outline-danger far fa-trash-alt"></i>
         </div>
+
+        {{-- Target Order --}}
+
+        <div class="input-group mb-3 col-md-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text">Ordem do Objetivo</label>
+          </div>
+          <input type="number" min="0" class="form-control targetorder" name="targetorder" value="0" required>
+        </div>
       </div>
 
       {{-- activity wrapper --}}
@@ -517,6 +526,13 @@
         </select>
       </div>
 
+      {{-- Activitie Order --}}
+      <div class="input-group mb-3 col-md-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text">Ordem da Atividade</label>
+        </div>
+        <input type="number" min="0" class="form-control activityorder" name="activityorder" value="0" required>
+      </div>
     </div>
 
   </div>
@@ -536,7 +552,7 @@
 
       <div class="input-group mb-3 col-md-12">
         <div class="input-group-prepend">
-          <span class="input-group-text">Restrições da Posição</span>
+          <span class="input-group-text">Diretrizes da Posição</span>
         </div>
         <textarea class="form-control restrictions" name="restrictions"></textarea>
       </div>
