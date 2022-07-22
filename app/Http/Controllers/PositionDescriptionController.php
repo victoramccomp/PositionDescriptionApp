@@ -162,7 +162,6 @@ class PositionDescriptionController extends Controller
 
                 return $query;
             })
-            ->orderBy('position.description', 'asc')
             ->paginate(15);
 
         $message = $request->session()->get('message');

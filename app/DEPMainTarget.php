@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\Builder;
 
 class DEPMainTarget extends Pivot
 {
@@ -24,5 +25,15 @@ class DEPMainTarget extends Pivot
     public function activities()
     {
         return $this->belongsTo(MainActivity::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+     
+        // Order by name ASC
+        static::addGlobalScope('order', function (Builder $builder) {
+            $builder->orderBy('activity_order', 'asc');
+        });
     }
 }

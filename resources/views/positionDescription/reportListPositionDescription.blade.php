@@ -268,7 +268,8 @@
                             {{ $target->pivot->classification }}
                         </span>
                         <span>
-                            - {{ $positionDescription->activities->where('id', $target->pivot->mainactivity_id)->first()->description }}
+                            {{ $target->pivot }}
+                            - {{ $positionDescription->activities->where('id', $target->pivot->mainactivity_id)->first() ? $positionDescription->activities->where('id', $target->pivot->mainactivity_id)->first()->description : "" }}
                         </span>
                     </p>
 
