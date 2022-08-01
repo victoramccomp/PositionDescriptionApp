@@ -1,3 +1,7 @@
+UPDATE `position_description` 
+    SET `restrictions` = 'Realizar tarefas correlatas de acordo com solicitação do gestor imediato';
+
+
 CREATE TABLE `config_hide_target_classification` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `is_hidden` tinyint(1) NOT NULL,
@@ -26,4 +30,4 @@ CREATE TABLE `config_position_guidelines` (
 --
 
 INSERT INTO `config_position_guidelines` (`id`, `is_activated`, `guidelines`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Preencha seus termos de uso e política de privacidade', '2021-03-10 20:15:58', '2021-06-01 17:56:37');
+(1, 1, 'Nenhuma Diretriz especificada', '2021-03-10 20:15:58', '2021-06-01 17:56:37');

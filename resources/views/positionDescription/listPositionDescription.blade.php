@@ -37,7 +37,7 @@
         style="font-weight: bold">
 
         <div class="d-flex justify-content-between align-itens-center">
-            <div class="col-1">Cóidigo da Posição</div>
+            <div class="col-1">Código da Posição</div>
             <div class="col-3">Posição</div>
             <div class="col-1">Perspectiva</div>
             <div class="col-2">Último Editor</div>
