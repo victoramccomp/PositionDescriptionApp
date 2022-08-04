@@ -79,12 +79,15 @@ class PositionDescription extends Model
     public function targets()
     {
         return $this->belongsToMany(MainTarget::class, 'dep_maintarget', 'position_description_id', 'maintarget_id')
-            ->using(DEPMainTarget::class)->withPivot('maintarget_id', 'mainactivity_id', 'classification', 'activity_order', 'target_order');
+            ->using(DEPMainTarget::class)
+            ->withPivot('maintarget_id', 'mainactivity_id', 'classification', 'target_order', 'activity_order')
+            ->orderBy('activity_order', 'asc');
     }
 
     public function activities()
     {
         return $this->belongsToMany(MainActivity::class, 'dep_maintarget', 'position_description_id', 'mainactivity_id')
-            ->using(DEPMainTarget::class)->withPivot('maintarget_id', 'mainactivity_id');
+            ->using(DEPMainTarget::class)
+            ->withPivot('maintarget_id', 'mainactivity_id');
     }
 }

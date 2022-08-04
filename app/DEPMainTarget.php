@@ -27,13 +27,4 @@ class DEPMainTarget extends Pivot
         return $this->belongsTo(MainActivity::class);
     }
 
-    protected static function boot()
-    {
-        parent::boot();
-     
-        // Order by name ASC
-        static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('activity_order', 'asc');
-        });
-    }
 }

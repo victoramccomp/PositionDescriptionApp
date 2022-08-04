@@ -256,7 +256,7 @@
                 <div style="margin-top: 10px;">
 
                 @foreach ($positionDescription->targets as $target)
-
+                    
                     @if ($targetIdAux != $target->id)
                         <p class="mb-10"><strong class="font-weight-bold">Objetivo: {{ $target->description }}</strong></p>
 
@@ -264,12 +264,14 @@
                     @endif
 
                     <p class="d-flex" style="margin-left:15px;align-items:flex-start;">
-                        <span class="classification__container">
-                            {{ $target->pivot->classification }}
-                        </span>
+
+                        @if ( $configHideTargetClassification->is_hidden == 0 )
+                            <span class="classification__container">
+                                {{ $target->pivot->classification }}
+                            </span>
+                        @endif
                         <span>
-                            {{ $target->pivot }}
-                            - {{ $positionDescription->activities->where('id', $target->pivot->mainactivity_id)->first() ? $positionDescription->activities->where('id', $target->pivot->mainactivity_id)->first()->description : "" }}
+                            {{ $target->pivot->activity_order }} - {{ $positionDescription->activities->where('id', $target->pivot->mainactivity_id)->first() ? $positionDescription->activities->where('id', $target->pivot->mainactivity_id)->first()->description : "" }}
                         </span>
                     </p>
 
@@ -293,6 +295,14 @@
             <div style="margin-top: 10px">
                 <strong class="font-weight-bold">Comentários</strong>
                 <p class="restrictions__container" style="margin-top: 10px">{{ $positionDescription->interviewer_comments }}</p>
+            </div>
+            @endif
+
+            {{-- Guidelines --}}
+            @if ($configPositionGuidelines->guidelines != '')
+            <div style="margin-top: 10px">
+                <strong class="font-weight-bold">Diretrizes Gerais da Posição</strong>
+                <p class="restrictions__container" style="margin-top: 10px">{{ $configPositionGuidelines->guidelines }}</p>
             </div>
             @endif
         </div>
