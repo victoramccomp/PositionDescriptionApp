@@ -206,7 +206,7 @@ class PositionDescriptionController extends Controller
         $gradeCourses = GradeCourse::all();
 
         $competences = Competence::all();
-        $competenceTypes = CompetenceType::all();
+        $competenceTypes = CompetenceType::orderBy('id', 'asc')->get();
         $competenceLevels = CompetenceLevel::all();
         $languages = Language::all();
 
@@ -785,9 +785,7 @@ class PositionDescriptionController extends Controller
         $depGrades = DEPGrade::where('position_description_id', $positionDescriptionId)->get();
         $depLanguages = DEPLanguage::where('position_description_id', $positionDescriptionId)->get();
         $depCompetences = DEPCompetence::where('position_description_id', $positionDescriptionId)->get();
-        $depMainTargets = DEPMainTarget::where('position_description_id', $positionDescriptionId)
-            ->orderBy('activity_order', 'desc')
-            ->get();
+        $depMainTargets = DEPMainTarget::where('position_description_id', $positionDescriptionId)->get();
 
         // Get data for Autocomplete and Select fields
         $positions = Position::all();
@@ -797,7 +795,7 @@ class PositionDescriptionController extends Controller
         $grades = Grade::all();
         $gradeCourses = GradeCourse::all();
         $competences = Competence::all();
-        $competenceTypes = CompetenceType::all();
+        $competenceTypes = CompetenceType::all()->sortBy('id');
         $competenceLevels = CompetenceLevel::all();
         $languages = Language::all();
         $targets = MainTarget::all();
@@ -839,9 +837,7 @@ class PositionDescriptionController extends Controller
         $depGrades = DEPGrade::where('position_description_id', $positionDescriptionId)->get();
         $depLanguages = DEPLanguage::where('position_description_id', $positionDescriptionId)->get();
         $depCompetences = DEPCompetence::where('position_description_id', $positionDescriptionId)->get();
-        $depMainTargets = DEPMainTarget::where('position_description_id', $positionDescriptionId)
-            ->orderBy('activity_order', 'desc')
-            ->get();
+        $depMainTargets = DEPMainTarget::where('position_description_id', $positionDescriptionId)->get();
 
         // Get data for Autocomplete and Select fields
         $positions = Position::all();
@@ -851,7 +847,7 @@ class PositionDescriptionController extends Controller
         $grades = Grade::all();
         $gradeCourses = GradeCourse::all();
         $competences = Competence::all();
-        $competenceTypes = CompetenceType::all();
+        $competenceTypes = CompetenceType::all()->sortBy('id');
         $competenceLevels = CompetenceLevel::all();
         $languages = Language::all();
         $targets = MainTarget::all();

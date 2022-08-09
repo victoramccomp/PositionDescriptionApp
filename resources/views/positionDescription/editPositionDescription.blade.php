@@ -193,10 +193,10 @@
       <thead>
         <tr>
           <th scope="col">Curso</th>
-          <th scope="col">Status</th>
-          <th scope="col">Importância</th>
           <th scope="col">Grau</th>
           <th scope="col">Área</th>
+          <th scope="col">Status</th>
+          <th scope="col">Importância</th>
           <th scope="col">Ações</th>
         </tr>
       </thead>

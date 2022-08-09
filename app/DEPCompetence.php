@@ -20,4 +20,10 @@ class DEPCompetence extends Pivot
     {
         return $this->belongsTo(CompetenceLevel::class, 'level', 'id');
     }
+
+    public function competence()
+    {
+        return $this->hasMany(Competence::class, 'competence_id', 'id')
+            ->orderBy('id', 'asc');
+    }
 }

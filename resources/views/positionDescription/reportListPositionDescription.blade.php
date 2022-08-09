@@ -263,15 +263,17 @@
                         @php {{ $targetIdAux = $target->id; }} @endphp
                     @endif
 
-                    <p class="d-flex" style="margin-left:15px;align-items:flex-start;">
-
+                    <p class="d-flex" style="margin-left:30px;align-items:flex-start;">
                         @if ( $configHideTargetClassification->is_hidden == 0 )
                             <span class="classification__container">
                                 {{ $target->pivot->classification }}
                             </span>
                         @endif
                         <span>
-                            {{ $target->pivot->activity_order }} - {{ $positionDescription->activities->where('id', $target->pivot->mainactivity_id)->first() ? $positionDescription->activities->where('id', $target->pivot->mainactivity_id)->first()->description : "" }}
+                            <strong class="font-weight-bold">
+                                {{ $target->pivot->activity_order }} - 
+                            </strong>
+                            {{ $positionDescription->activities->where('id', $target->pivot->mainactivity_id)->first() ? $positionDescription->activities->where('id', $target->pivot->mainactivity_id)->first()->description : "" }}
                         </span>
                     </p>
 

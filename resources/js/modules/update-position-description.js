@@ -296,10 +296,10 @@ const init = () => {
         const row = document.createElement('tr');
 
         addTd({ dataset: { key: 'id', value: inputs[0].value }, text: inputs[1].value, row: row })
-        addTd({ dataset: { key: 'gradestatus', value: gradestatus.options[gradestatus.selectedIndex].value }, text: gradestatus.options[gradestatus.selectedIndex].text, row: row })
-        addTd({ dataset: { key: 'graderequirement', value: graderequirement.options[graderequirement.selectedIndex].value }, text: graderequirement.options[graderequirement.selectedIndex].text, row: row })
         addTd({ dataset: { key: 'grade', value: gradeId }, text: gradeDescription, row: row })
         addTd({ dataset: { key: 'gradearea', value: areaId }, text: areaDescription, row: row })
+        addTd({ dataset: { key: 'gradestatus', value: gradestatus.options[gradestatus.selectedIndex].value }, text: gradestatus.options[gradestatus.selectedIndex].text, row: row })
+        addTd({ dataset: { key: 'graderequirement', value: graderequirement.options[graderequirement.selectedIndex].value }, text: graderequirement.options[graderequirement.selectedIndex].text, row: row })
         addTd({ type: 'btn', fn: removeGradeCourse, row: row })
 
         tablerow.appendChild(row);
@@ -705,10 +705,10 @@ const init = () => {
             const row = document.createElement('tr');
 
             addTd({ dataset: { key: 'id', value: depGrades[i].grade_id }, text: courseDescription, row: row })
-            addTd({ dataset: { key: 'gradestatus', value: depGrades[i].status }, text: document.querySelector('#gradestatus option[value="' + depGrades[i].status + '"]').text, row: row })
-            addTd({ dataset: { key: 'graderequirement', value: depGrades[i].requirement }, text: document.querySelector('#graderequirement option[value="' + depGrades[i].requirement + '"]').text, row: row })
             addTd({ dataset: { key: 'grade', value: courseGradeId }, text: document.querySelector('.grade option[value="' + courseGradeId + '"]').text, row: row })
             addTd({ dataset: { key: 'gradearea', value: courseAreaId }, text: document.querySelector('.area option[value="' + courseAreaId + '"]').text, row: row })
+            addTd({ dataset: { key: 'gradestatus', value: depGrades[i].status }, text: document.querySelector('#gradestatus option[value="' + depGrades[i].status + '"]').text, row: row })
+            addTd({ dataset: { key: 'graderequirement', value: depGrades[i].requirement }, text: document.querySelector('#graderequirement option[value="' + depGrades[i].requirement + '"]').text, row: row })
             addTd({ type: 'btn', fn: removeGradeCourse, row: row })
 
             tablerow.appendChild(row);
