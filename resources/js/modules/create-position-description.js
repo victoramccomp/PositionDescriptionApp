@@ -338,10 +338,10 @@ const init = () => {
         const row = document.createElement('tr')
 
         addTd({ dataset: { key: 'id', value: inputs[0].value }, text: inputs[1].value, row: row })
-        addTd({ dataset: { key: 'gradestatus', value: gradestatus.options[gradestatus.selectedIndex].value }, text: gradestatus.options[gradestatus.selectedIndex].text, row: row })
-        addTd({ dataset: { key: 'graderequirement', value: graderequirement.options[graderequirement.selectedIndex].value }, text: graderequirement.options[graderequirement.selectedIndex].text, row: row })
         addTd({ dataset: { key: 'grade', value: gradeId }, text: gradeDescription, row: row })
         addTd({ dataset: { key: 'gradearea', value: areaId }, text: areaDescription, row: row })
+        addTd({ dataset: { key: 'gradestatus', value: gradestatus.options[gradestatus.selectedIndex].value }, text: gradestatus.options[gradestatus.selectedIndex].text, row: row })
+        addTd({ dataset: { key: 'graderequirement', value: graderequirement.options[graderequirement.selectedIndex].value }, text: graderequirement.options[graderequirement.selectedIndex].text, row: row })
         addTd({ type: 'btn', fn: removeGradeCourse, row: row })
 
         tablerow.appendChild(row);
