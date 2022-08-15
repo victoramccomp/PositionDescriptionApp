@@ -112,20 +112,20 @@
         <thead>
           <tr>
             <th scope="col">Curso</th>
-            <th scope="col">Status</th>
-            <th scope="col">Importância</th>
             <th scope="col">Grau</th>
             <th scope="col">Área</th>
+            <th scope="col">Status</th>
+            <th scope="col">Importância</th>
           </tr>
         </thead>
         <tbody>
           @foreach ( $positionDescriptions->gradeCourses as $positionCourse )
           <tr>
             <td>{{ $positionCourse->description }}</td>
-            <td>{{ $positionCourse->pivot->status == "ongoing" ? "Em andamento" : "Completo" }}</td>
-            <td>{{ $positionCourse->pivot->requirement == "differential" ? "Diferencial (Recomendado)" : "Necessário (Obrigatório)" }}</td>
             <td>{{ $positionCourse->grade->description }}</td>
             <td>{{ $positionCourse->area->description }}</td>
+            <td>{{ $positionCourse->pivot->status == "ongoing" ? "Em andamento" : "Completo" }}</td>
+            <td>{{ $positionCourse->pivot->requirement == "differential" ? "Diferencial (Recomendado)" : "Necessário (Obrigatório)" }}</td>
           <tr>
           @endforeach
         </tbody>

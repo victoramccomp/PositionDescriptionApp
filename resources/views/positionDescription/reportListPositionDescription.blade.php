@@ -221,27 +221,19 @@
                     </thead>
                     <tbody>
 
-                        @foreach ($positionDescription->competences as $competence)
-                            @if ($competence->competenceType->description !== "Sistemas")
+                        @foreach ($positionDescription->DEPCompetence as $competence)
                             <tr>
-                                <td>{{ $competence->competenceType->description }}</td>
-                                <td>{{ $competence->description }}</td>
+                                <td>{{ $competence->type_description }}</td>
+                                <td>{{ $competence->competence_description }}</td>
+                                <td>{{ $competence->level_description }}</td>
                                 <td>
-                                    {{
-                                        $positionDescription->competenceLevel
-                                            ->where('id', $competence->pivot->level)
-                                            ->first()->description
-                                    }}
-                                </td>
-                                <td>
-                                    @if($competence->pivot->requirement == "differential")
+                                    @if($competence->requirement == "differential")
                                         Diferencial (Recomendado)
                                     @else
                                         Necessário (Obrigatório)
                                     @endif
                                 </td>
                             </tr>
-                            @endif
                         @endforeach
                     </tbody>
                 </table>

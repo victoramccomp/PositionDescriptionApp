@@ -115,17 +115,31 @@ class PositionDescriptionController extends Controller
         $configPositionGuidelines = ConfigPositionGuidelines::first();
 
         $positionDescriptions = PositionDescription::where('is_activated', 1)
-            ->with('position')
+            ->join('position', 'position_description.position_id', '=', 'position.id')
+            ->select('position_description.*')
             ->with('position.directorate')
             ->with('position.positionGroup')
             ->with('gradeCourses.grade')
             ->with('gradeCourses.area')
             ->with('languages')
-            ->with('competences')
-            ->with('competences.competenceType')
-            ->with('competenceLevel')
             ->with('targets')
             ->with('activities')
+            ->with(['DEPCompetence' => function($query) {
+                $query->join('competence', 'competence.id', '=', 'dep_competence.competence_id')
+                    ->join('competence_type as type', 'type.id', '=', 'competence.competence_type_id')
+                    ->join('competence_level as level', 'level.id', '=', 'dep_competence.level')
+                    ->select(
+                        'dep_competence.*', 
+                        'competence.description as competence_description', 
+                        'type.description as type_description', 
+                        'level.description as level_description'
+                    )
+                    ->where('type.description', '<>', 'Sistemas')
+                    ->orderBy('type.description', 'asc')
+                    ->orderBy('dep_competence.requirement', 'desc')
+                    ->orderBy('competence.description', 'asc');
+            }])
+            ->orderBy('position.description', 'asc')
             ->when($request, function($query) use ($request) {
                 // check date range
                 if (
@@ -167,6 +181,9 @@ class PositionDescriptionController extends Controller
                 return $query;
             })
             ->paginate(15);
+
+
+        // $positionDescriptions->setCollection($positionDescriptions->getCollection()->sortBy('position.description'));
 
         $message = $request->session()->get('message');
 
@@ -847,7 +864,7 @@ class PositionDescriptionController extends Controller
         $grades = Grade::all();
         $gradeCourses = GradeCourse::all();
         $competences = Competence::all();
-        $competenceTypes = CompetenceType::all()->sortBy('id');
+        $competenceTypes = CompetenceType::all();
         $competenceLevels = CompetenceLevel::all();
         $languages = Language::all();
         $targets = MainTarget::all();

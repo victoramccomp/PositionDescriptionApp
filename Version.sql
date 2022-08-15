@@ -39,20 +39,6 @@ INSERT INTO `config_position_guidelines` (`id`, `is_activated`, `guidelines`, `c
 --------------------------------------------------------------------------------------------
 
 
--- 1 = ASSISTENTE
-UPDATE `position_description` 
-    SET `leadership_time` = 0,
-        `experience_time` = 0
-  JOIN `position` ON `position_description`.`position_id` = `position`.`id`
- WHERE `position`.`position_group_id` = 1;
-
--- 2 = OPERADOR
-UPDATE `position_description` 
-    SET `leadership_time` = 0,
-        `experience_time` = 2
-  JOIN `position` ON `position_description`.`position_id` = `position`.`id`
- WHERE `position`.`position_group_id` = 2;
-
 ASSISTENTE	0	0
 OPERADOR	0	2
 -- ANALISTA JR	0	1
@@ -76,6 +62,20 @@ PRESIDENTE	10	10
 CONSULTOR	0	5
 APRENDIZ	0	0
 
+
+-- 1 = ASSISTENTE
+UPDATE `position_description` 
+    SET `leadership_time` = 0,
+        `experience_time` = 0
+  JOIN `position` ON `position_description`.`position_id` = `position`.`id`
+ WHERE `position`.`position_group_id` = 1;
+
+-- 2 = OPERADOR
+UPDATE `position_description` 
+    SET `leadership_time` = 0,
+        `experience_time` = 2
+  JOIN `position` ON `position_description`.`position_id` = `position`.`id`
+ WHERE `position`.`position_group_id` = 2;
 
 -- 1 ASSISTENTE
 UPDATE `position_description` 

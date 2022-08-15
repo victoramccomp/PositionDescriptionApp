@@ -16,21 +16,15 @@
     <div class="container">
       <div class="row">
 
-        <!-- clear -->
-        <div class="col-auto">
-          <button
-            class="btn btn-primary"
-            @click.self="resetData"
-          >Limpar filtros</button>
-        </div>
 
         <!-- date -->
         <div
           v-if="!hidden.includes('date')"
           class="col-auto">
-
+          
           <div class="dropdown">
-
+            
+            <label for="date">{{ date.label }}</label>
             <!-- dropdown button -->
             <button
               id="dropdownMenuDate"
@@ -126,8 +120,10 @@
         <div
           v-if="hasInterviewed && !hidden.includes('interviewed')"
           class="col-auto">
-          <div class="dropdown">
 
+          <div class="dropdown">
+            
+            <label for="interviewed">{{ interviewed.label }}</label>
             <!-- dropdown button -->
             <button
               id="dropdownMenuInterviewed"
@@ -184,6 +180,7 @@
           class="col-auto">
           <div class="dropdown">
 
+            <label for="directorate">{{ directorate.label }}</label>
             <button
               id="dropdownMenuDirectorate"
               class="btn btn-light dropdown-toggle"
@@ -228,6 +225,7 @@
           class="col-auto">
           <div class="dropdown">
 
+            <label for="positionGroup">{{ positionGroup.label }}</label>
             <button
               id="dropdownMenuPositionGroup"
               class="btn btn-light dropdown-toggle"
@@ -264,6 +262,9 @@
             </div>
           </div>
         </div>
+      </div>
+      <br>
+      <div class="row">
 
         <!-- search -->
         <div
@@ -292,7 +293,13 @@
 
           </div>
         </div>
-
+        <!-- clear -->
+        <div class="col-auto">
+          <button
+            class="btn btn-primary"
+            @click.self="resetData"
+          >Limpar filtros</button>
+        </div>
       </div>
     </div>
 
@@ -304,10 +311,10 @@ const baseData = () => ({
   loading: false,
   route: window.location.pathname,
   middlewareDate: { start: '', end: '' },
-  date: { title: 'Qualquer data', value: null, start: null, end: null, paramName: 'date' },
-  interviewed: { title: 'Todos', value: null, paramName: 'interviewed' },
-  directorate: { title: 'Todos', value: null, paramName: 'directorate' },
-  positionGroup: { title: 'Todos', value: null, paramName: 'position_group' },
+  date: { label: 'Período', title: 'Qualquer data', value: null, start: null, end: null, paramName: 'date' },
+  interviewed: { label: 'Perspectiva', title: 'Todos', value: null, paramName: 'interviewed' },
+  directorate: { label: 'Diretoria', title: 'Todos', value: null, paramName: 'directorate' },
+  positionGroup: { label: 'Grupo da Posição', title: 'Todos', value: null, paramName: 'position_group' },
   search: { value: null, paramName: 'search' },
   queryObject: {}
 })
@@ -468,7 +475,7 @@ export default {
       if (range) {
         const start = range.start.split(' ')[0]
         const end = range.end.split(' ')[0]
-
+        
         base.date.title = `${start} - ${end}`
         base.middlewareDate.start = start
         base.middlewareDate.end = end
