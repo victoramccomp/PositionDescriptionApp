@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ConfigHideTargetActivity;
 use App\ConfigHideTargetClassification;
 use App\ConfigPositionGuidelines;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ class ConfigController extends Controller
     {
         $configPositionInterest = ConfigPositionInterest::first();
         $configHideTargetClassification = ConfigHideTargetClassification::first();
+        $configHideTargetActivity = ConfigHideTargetActivity::first();
         $configPositionGuidelines = ConfigPositionGuidelines::first();
 
         if ( ! $this->checkRolePermission( 'admin' ) )
@@ -25,6 +27,7 @@ class ConfigController extends Controller
         return view( 'config.editConfig', [ 
             'configPositionInterest' => $configPositionInterest,
             'configHideTargetClassification' => $configHideTargetClassification,
+            'configHideTargetActivity' => $configHideTargetActivity,
             'configPositionGuidelines' => $configPositionGuidelines 
         ] );
     }
@@ -34,12 +37,16 @@ class ConfigController extends Controller
         if ( ! $this->checkRolePermission( 'admin' ) )
             return view( 'auth.permission' );
 
+
         $isHidden = isset( $request->is_hidden ) ? 1 : 0;
+        $isHiddenActivity = isset( $request->is_hidden_activity ) ? 1 : 0;
         $isActivated = isset( $request->is_activated );
 
         $configHideTargetClassification = ConfigHideTargetClassification::findOrFail( $request->config_hide_target_classification_id );
-        $configHideTargetClassification = ConfigHideTargetClassification::findOrFail($request->id);
         $configHideTargetClassification->is_hidden = $isHidden;
+
+        $configHideTargetActivity = ConfigHideTargetActivity::findOrFail( $request->config_hide_target_activity_id );
+        $configHideTargetActivity->is_hidden = $isHiddenActivity;
 
         $configPositionGuidelines = ConfigPositionGuidelines::findOrFail($request->config_guidelines_id);
         $configPositionGuidelines->guidelines = $request->guidelines;
@@ -49,6 +56,7 @@ class ConfigController extends Controller
         $configPositionInterest->terms_and_privacy = $request->terms_and_privacy;
 
         $configHideTargetClassification->save();
+        $configHideTargetActivity->save();
         $configPositionGuidelines->save();
         $configPositionInterest->save();
 

@@ -241,7 +241,7 @@
             @endif
 
             {{-- Target & Activities --}}
-            @if (count($positionDescription->targets) > 0)
+            @if (count($positionDescription->targets) > 0 && !$configHideTargetActivity->is_hidden)
             <div style="margin-top: 10px;">
                 <strong class="font-weight-bold">Objetivos e Atividades</strong>
                 @php {{ $targetIdAux = 0; }} @endphp

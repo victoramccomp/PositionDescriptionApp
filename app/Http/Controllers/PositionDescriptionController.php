@@ -15,6 +15,7 @@ use App\GradeCourse;
 use App\Competence;
 use App\CompetenceType;
 use App\CompetenceLevel;
+use App\ConfigHideTargetActivity;
 use App\ConfigHideTargetClassification;
 use App\ConfigPositionGuidelines;
 use App\Language;
@@ -113,6 +114,7 @@ class PositionDescriptionController extends Controller
         $configPositionInterest = ConfigPositionInterest::first();
         $configHideTargetClassification = ConfigHideTargetClassification::first();
         $configPositionGuidelines = ConfigPositionGuidelines::first();
+        $configHideTargetActivity = ConfigHideTargetActivity::first();
 
         $positionDescriptions = PositionDescription::where('is_activated', 1)
             ->join('position', 'position_description.position_id', '=', 'position.id')
@@ -195,6 +197,7 @@ class PositionDescriptionController extends Controller
                 'configPositionInterest' => $configPositionInterest,
                 'configHideTargetClassification' => $configHideTargetClassification,
                 'configPositionGuidelines' => $configPositionGuidelines,
+                'configHideTargetActivity' => $configHideTargetActivity,
                 'request' => json_encode(array(
                     'range' => array( 'start' => $request->start, 'end' => $request->end ),
                     'interviewed' => $request->interviewed,

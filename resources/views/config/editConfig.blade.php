@@ -43,6 +43,12 @@
                     name="config_guidelines_id"
                     value="{{ $configPositionGuidelines->id }}">    
 
+                
+                <input
+                    type="hidden"
+                    name="config_hide_target_activity_id"
+                    value="{{ $configHideTargetActivity->id }}">    
+
                 <hr>
                 <h3>Demonstração de Interesse</h3>
                 <div class="d-flex w-100">
@@ -104,6 +110,26 @@
                             name="is_hidden"
                             class="switch mr-2"
                             {{ $configHideTargetClassification->is_hidden === 1 ? 'checked' : '' }} >
+            
+                        <span>Ativado</span>
+                    </div>
+                </div>
+
+                <hr>
+                <h3>Ocultar Objetivos e Atividades</h3>
+                <div class="d-flex w-100">
+                    <div>
+                        <p class="m-0">Ao ativar esta opção, os Objetivos e Atividades ficarão ocultos do Relatório de Descrição de Posição</p>
+                    </div>
+                    <div class="d-flex ml-auto">
+                        <span class="mr-2">Inativado</span>
+            
+                        <input
+                            id="is_hidden_activity"
+                            type="checkbox"
+                            name="is_hidden_activity"
+                            class="switch mr-2"
+                            {{ $configHideTargetActivity->is_hidden === 1 ? 'checked' : '' }} >
             
                         <span>Ativado</span>
                     </div>
