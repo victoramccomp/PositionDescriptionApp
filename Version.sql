@@ -67,20 +67,6 @@ CONSULTOR	0	5
 APRENDIZ	0	0
 
 
--- 1 = ASSISTENTE
-UPDATE `position_description` 
-    SET `leadership_time` = 0,
-        `experience_time` = 0
-  JOIN `position` ON `position_description`.`position_id` = `position`.`id`
- WHERE `position`.`position_group_id` = 1;
-
--- 2 = OPERADOR
-UPDATE `position_description` 
-    SET `leadership_time` = 0,
-        `experience_time` = 2
-  JOIN `position` ON `position_description`.`position_id` = `position`.`id`
- WHERE `position`.`position_group_id` = 2;
-
 -- 1 ASSISTENTE
 UPDATE `position_description` 
     SET `leadership_time` = 0,
@@ -95,12 +81,32 @@ UPDATE `position_description`
   JOIN `position` ON `position_description`.`position_id` = `position`.`id`
  WHERE `position`.`position_group_id` = 2;
 
--- 3 ANALISTA
+-- 3 ANALISTA JR
 UPDATE `position_description` 
-    SET `leadership_time` = ?,
-        `experience_time` = ?
+    SET `leadership_time` = 0,
+        `experience_time` = 1
   JOIN `position` ON `position_description`.`position_id` = `position`.`id`
- WHERE `position`.`position_group_id` = 3;
+ WHERE `position`.`position_group_id` = 3
+   AND `position`.`description` LIKE "% JR%";
+
+
+-- 3 ANALISTA PL
+UPDATE `position_description` 
+    SET `leadership_time` = 0,
+        `experience_time` = 2
+  JOIN `position` ON `position_description`.`position_id` = `position`.`id`
+ WHERE `position`.`position_group_id` = 3
+   AND `position`.`description LIKE` "% PL%";
+
+
+-- 3 ANALISTA SR
+UPDATE `position_description` 
+    SET `leadership_time` = 0,
+        `experience_time` = 4
+  JOIN `position` ON `position_description`.`position_id` = `position`.`id`
+ WHERE `position`.`position_group_id` = 3
+   AND `position`.`description LIKE` "% SR%";
+
 
 -- 4 PLANEJADOR
 UPDATE `position_description` 
@@ -111,10 +117,29 @@ UPDATE `position_description`
 
 -- 5 TÉCNICO
 UPDATE `position_description` 
-    SET `leadership_time` = ?,
-        `experience_time` = ?
+    SET `leadership_time` = 0,
+        `experience_time` = 1
   JOIN `position` ON `position_description`.`position_id` = `position`.`id`
- WHERE `position`.`position_group_id` = 5;
+ WHERE `position`.`position_group_id` = 5
+   AND `position`.`description` LIKE "% JR%";
+ 
+
+-- 5 TÉCNICO
+UPDATE `position_description` 
+    SET `leadership_time` = 0,
+        `experience_time` = 2
+  JOIN `position` ON `position_description`.`position_id` = `position`.`id`
+ WHERE `position`.`position_group_id` = 5
+   AND `position`.`description` LIKE "% PL%";
+
+
+-- 5 TÉCNICO
+UPDATE `position_description` 
+    SET `leadership_time` = 0,
+        `experience_time` = 3
+  JOIN `position` ON `position_description`.`position_id` = `position`.`id`
+ WHERE `position`.`position_group_id` = 5
+   AND `position`.`description` LIKE "% SR%";
 
 -- 6 AUXILIAR
 UPDATE `position_description` 

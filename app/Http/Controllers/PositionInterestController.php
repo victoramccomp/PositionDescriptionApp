@@ -17,7 +17,7 @@ class PositionInterestController extends Controller
     public function index( Request $request ) 
     {
         $positionInterests = PositionInterest::with('positionDescription.position')
-            ->orderBy('id', 'DESC')
+            ->orderBy('created_at', 'DESC')
             ->paginate(20);
 
         $message = $request->session()->get('message');
