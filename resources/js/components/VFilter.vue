@@ -262,6 +262,62 @@
             </div>
           </div>
         </div>
+
+         <!-- is-active -->
+        <div class="col-auto">
+
+          <div class="dropdown">
+            
+            <label for="depActivated">{{ depActivated.label }}</label>
+            <!-- dropdown button -->
+            <button
+              id="dropdownMenuisDepActive"
+              class="btn btn-light dropdown-toggle"
+              type="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >{{ depActivated.title }}</button>
+
+            <!-- dropdown -->
+            <div
+              class="dropdown-menu"
+              aria-labelledby="dropdownMenuisDepActive">
+
+                <!-- active option -->
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  data-title="Ativos"
+                  data-target="is_dep_active"
+                  data-value="true"
+                  @click.self="updateData"
+                >Ativos</a>
+
+                <!-- inactive option -->
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  data-title="Inativos"
+                  data-target="is_dep_active"
+                  data-value="false"
+                  @click.self="updateData"
+                >Inativos</a>
+
+                <!-- All option -->
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  data-title="Todos"
+                  data-target="is_dep_active"
+                  data-value=""
+                  @click.self="updateData"
+                >Todos</a>
+
+            </div>
+
+          </div>
+        </div>
       </div>
       <br>
       <div class="row">
@@ -315,6 +371,7 @@ const baseData = () => ({
   interviewed: { label: 'Perspectiva', title: 'Todos', value: null, paramName: 'interviewed' },
   directorate: { label: 'Diretoria', title: 'Todos', value: null, paramName: 'directorate' },
   positionGroup: { label: 'Grupo da Posição', title: 'Todos', value: null, paramName: 'position_group' },
+  depActivated: { label: 'Status', title: 'Todos', value: null, paramName: 'is_dep_active' },
   search: { value: null, paramName: 'search' },
   queryObject: {}
 })
@@ -347,6 +404,11 @@ export default {
       type: Array,
       required: false,
       default: () => ([])
+    },
+    isDepActive: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     defaultParams: {
       type: Object,
@@ -448,6 +510,11 @@ export default {
       this.$set(this.queryObject, 'positionGroup', value)
     },
 
+    'depActivated.value': function (value) {
+      if (!value) return this.$delete(this.queryObject, 'depActivated')
+      this.$set(this.queryObject, 'depActivated', value)
+    },
+
     'search.value': function (value) {
       if (!value) return this.$delete(this.queryObject, 'search')
       this.$set(this.queryObject, 'search', value)
@@ -505,6 +572,13 @@ export default {
 
         base.positionGroup.title = item.description
         base.positionGroup.value = item.id
+      }
+
+      // register isDepActive
+      const isDepActive = defaultParams.is_dep_active || request.is_dep_active
+      if (isDepActive) {
+        base.depActivated.title = isDepActive ? "Ativos" : "Inativos"
+        base.depActivated.value = isDepActive ? true : false
       }
 
       // register search

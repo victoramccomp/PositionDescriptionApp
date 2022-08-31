@@ -122,8 +122,8 @@
                             <th scope="col">Grau</th>
                             <th scope="col">Área</th>
                             <th scope="col">Curso</th>
-                            <th scope="col">Importância</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Importância</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -133,17 +133,17 @@
                                 <td>{{ $course->area->description }}</td>
                                 <td>{{ $course->description }}</td>
                                 <td>
-                                    @if($course->pivot->requirement == "differential")
-                                        Diferencial (Recomendado)
-                                    @else
-                                        Necessário (Obrigatório)
-                                    @endif
-                                </td>
-                                <td>
                                     @if($course->pivot->status == "ongoing")
                                         Em Andamento
                                     @else
                                         Completo
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($course->pivot->requirement == "differential")
+                                        Diferencial (Recomendado)
+                                    @else
+                                        Necessário (Obrigatório)
                                     @endif
                                 </td>
                             </tr>

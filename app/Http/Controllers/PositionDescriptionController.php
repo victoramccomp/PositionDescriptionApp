@@ -116,8 +116,7 @@ class PositionDescriptionController extends Controller
         $configPositionGuidelines = ConfigPositionGuidelines::first();
         $configHideTargetActivity = ConfigHideTargetActivity::first();
 
-        $positionDescriptions = PositionDescription::where('is_activated', 1)
-            ->join('position', 'position_description.position_id', '=', 'position.id')
+        $positionDescriptions = PositionDescription::join('position', 'position_description.position_id', '=', 'position.id')
             ->select('position_description.*')
             ->with('position.directorate')
             ->with('position.positionGroup')
@@ -179,21 +178,31 @@ class PositionDescriptionController extends Controller
                         $_query->where('position_group_id', $request->position_group);
                     });
                 }
-                
+
+                // check is Active
+                if ( $request->has('is_dep_active') && ! empty( $request->input('is_dep_active') ) ) {
+                    $isActive = $request->is_dep_active === 'true' ? 1 : 0;
+                    $query = $query->where('is_activated', $isActive);
+                }
+
                 return $query;
             })
             ->paginate(15);
 
-
-        // $positionDescriptions->setCollection($positionDescriptions->getCollection()->sortBy('position.description'));
-
         $message = $request->session()->get('message');
+
+        $isDepActive = false;
+
+        if ( $request->has('is_dep_active') && ! empty( $request->input('is_dep_active') ) ) {
+            $isDepActive = $request->input('is_dep_active');
+        }
 
         return view( 'positionDescription.reportListPositionDescription',
             [
                 'positionDescriptions' => $positionDescriptions,
                 'positionGroups' => $positionGroups,
                 'directorates' => $directorates,
+                'isDepActive' => $isDepActive,
                 'configPositionInterest' => $configPositionInterest,
                 'configHideTargetClassification' => $configHideTargetClassification,
                 'configPositionGuidelines' => $configPositionGuidelines,
@@ -203,6 +212,7 @@ class PositionDescriptionController extends Controller
                     'interviewed' => $request->interviewed,
                     'directorate' => $request->directorate,
                     'position_group' => $request->position_group,
+                    'is_dep_active' => $request->is_dep_active,
                     'search' => $request->search
                 ), true),
                 'message' => $message
