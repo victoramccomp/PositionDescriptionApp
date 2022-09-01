@@ -932,6 +932,32 @@ class PositionDescriptionController extends Controller
         );
     }
 
+
+    public function getRawPositionDescription( int $positionDescriptionId )
+    {
+        if ( ! $this->checkRolePermission( 'read' ) )
+            return view( 'auth.permission' );
+
+        set_time_limit(0);
+
+        $positionDescriptions = PositionDescription::with('position')
+            ->with('gradeCourses.grade')
+            ->with('gradeCourses.area')
+            ->with('languages')
+            ->with('competences')
+            ->with('competences.competenceType')
+            ->with('competenceLevel')
+            ->with('targets')
+            ->with('activities')
+            ->findOrfail($positionDescriptionId);
+
+        return view( 'positionDescription.readRawPositionDescription',
+            [
+                'positionDescriptions' => $positionDescriptions
+            ]
+        );
+    }
+
     public function checkRolePermission( string $role )
     {
         $screen = 'position_description';

@@ -59,6 +59,12 @@
                     href="{{ route('getPositionDescription', $positionDescription->id) }}"
                 >Visualizar para impressão</a>
 
+                {{-- Raw --}}
+                <a
+                    class="col-auto btn btn-primary mr-3"
+                    href="{{ route('getRawPositionDescription', $positionDescription->id) }}"
+                >Visualizar para cópia</a>
+
                 {{-- Position Interest --}}
                 @if ( $positionDescription->interviewed == "leader" && $configPositionInterest->is_activated )
                     <a

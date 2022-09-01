@@ -273,7 +273,7 @@
                 {{ $target->pivot->classification }}
               </span>
               <span>
-                {{ $positionDescriptions->activities->where("id", $target->pivot->mainactivity_id)->first()->description }}
+                {{ $positionDescriptions->activities->where('id', $target->pivot->mainactivity_id)->first() ? $positionDescriptions->activities->where('id', $target->pivot->mainactivity_id)->first()->description : "" }}
               </span>
             </label>
           </div>

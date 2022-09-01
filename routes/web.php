@@ -34,6 +34,7 @@ Route::post('/positiondescription/create', ['middleware' => 'auth', 'uses' => 'P
 Route::post('/positiondescription/update', ['middleware' => 'auth', 'uses' => 'PositionDescriptionController@update'])->name('updatePositionDescription');
 Route::get('/positiondescription/edit/{positionDescriptionId}', ['middleware' => 'auth', 'uses' => 'PositionDescriptionController@edit'])->name('editPositionDescription');
 Route::get('/positiondescription/getPositionDescription/{positionDescriptionId}', ['middleware' => 'auth', 'uses' => 'PositionDescriptionController@getPositionDescription'])->name('getPositionDescription');
+Route::get('/positiondescription/getRawPositionDescription/{positionDescriptionId}', ['middleware' => 'auth', 'uses' => 'PositionDescriptionController@getRawPositionDescription'])->name('getRawPositionDescription');
 Route::get('/positiondescription/validateDEP/{positionDescriptionId}', ['middleware' => 'auth', 'uses' => 'PositionDescriptionController@validateDEP'])->name('validatePositionDescription');
 Route::get('/positiondescription/exportXLSX', ['middleware' => 'auth', 'uses' => 'PositionDescriptionController@exportXLSX'])->name('exportXLSXPositionDescription');
 Route::get('/positiondescription/exportPDF/{positionDescriptionId}', ['middleware' => 'auth', 'uses' => 'PositionDescriptionController@exportPDF'])->name('exportPDFPositionDescription');
