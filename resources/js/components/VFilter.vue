@@ -517,7 +517,7 @@ export default {
 
     'search.value': function (value) {
       if (!value) return this.$delete(this.queryObject, 'search')
-      this.$set(this.queryObject, 'search', value)
+      this.$set(this.queryObject, 'search', value.replace('&','%26'))
     }
   },
 
@@ -584,7 +584,7 @@ export default {
       // register search
       const search = defaultParams.search || request.search
       if (search) { 
-        base.search.value = search
+        base.search.value = search.replace('%26','&')
       }
 
       // register data
