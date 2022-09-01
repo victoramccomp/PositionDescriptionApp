@@ -505,13 +505,14 @@ const init = () => {
         var gradeCourseData = [];
 
         for (let i = 0; i < tableGrade.length; i++) {
+
             gradeCourseData.push({
                 grade_course_id: tableGrade[i].children[0].dataset.id,
                 grade_course: removeQuoteFromText(tableGrade[i].children[0].innerText),
-                status: tableGrade[i].children[1].dataset.gradestatus,
-                requirement: tableGrade[i].children[2].dataset.graderequirement,
-                grade: tableGrade[i].children[3].dataset.grade,
-                area: tableGrade[i].children[4].dataset.gradearea
+                grade: tableGrade[i].children[1].dataset.grade,
+                area: tableGrade[i].children[2].dataset.gradearea,
+                status: tableGrade[i].children[3].dataset.gradestatus,
+                requirement: tableGrade[i].children[4].dataset.graderequirement
             });
         }
 
