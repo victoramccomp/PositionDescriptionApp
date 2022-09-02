@@ -210,19 +210,20 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ( $positionDescriptions->competences as $competence )
-          <tr>
-            <td>{{ $competence->competenceType->description }}</td>
-            <td>{{ $competence->description }}</td>
-            <td>
-              {{
-                $positionDescriptions->competenceLevel
-                  ->where("id", $competence->pivot->level)
-                  ->first()->description
-              }}
-            </td>
-            <td>{{ $competence->pivot->requirement == "differential" ?  "Diferencial (Recomendado)" : "Necessário (Obrigatório)"  }}</td>
-          </tr>
+
+          @foreach ($positionDescriptions->DEPCompetence as $competence)
+              <tr>
+                  <td>{{ $competence->type_description }}</td>
+                  <td>{{ $competence->competence_description }}</td>
+                  <td>{{ $competence->level_description }}</td>
+                  <td>
+                      @if($competence->requirement == "differential")
+                          Diferencial (Recomendado)
+                      @else
+                          Necessário (Obrigatório)
+                      @endif
+                  </td>
+              </tr>
           @endforeach
         </tbody>
       </table>

@@ -918,11 +918,23 @@ class PositionDescriptionController extends Controller
             ->with('gradeCourses.grade')
             ->with('gradeCourses.area')
             ->with('languages')
-            ->with('competences')
-            ->with('competences.competenceType')
-            ->with('competenceLevel')
             ->with('targets')
             ->with('activities')
+            ->with(['DEPCompetence' => function($query) {
+                $query->join('competence', 'competence.id', '=', 'dep_competence.competence_id')
+                    ->join('competence_type as type', 'type.id', '=', 'competence.competence_type_id')
+                    ->join('competence_level as level', 'level.id', '=', 'dep_competence.level')
+                    ->select(
+                        'dep_competence.*', 
+                        'competence.description as competence_description', 
+                        'type.description as type_description', 
+                        'level.description as level_description'
+                    )
+                    ->where('type.description', '<>', 'Sistemas')
+                    ->orderBy('type.description', 'asc')
+                    ->orderBy('dep_competence.requirement', 'desc')
+                    ->orderBy('competence.description', 'asc');
+            }])
             ->findOrfail($positionDescriptionId);
 
         return view( 'positionDescription.readPositionDescription',
