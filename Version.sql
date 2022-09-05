@@ -5,6 +5,11 @@ UPDATE `position_description`
 ----------------------------------------------------------------------------------------------------------
 
 
+ALTER TABLE `dep_maintarget` ADD `target_order` INT NULL AFTER `classification`, ADD `activity_order` INT NULL AFTER `target_order`; 
+
+----------------------------------------------------------------------------------------------------------
+
+
 CREATE TABLE `config_hide_target_classification` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `is_hidden` tinyint(1) NOT NULL,
