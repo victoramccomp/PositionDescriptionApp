@@ -55,7 +55,7 @@ class PositionInterestController extends Controller
 
         $request->session()->flash('message', "$positionInterest->name cadastrado com sucesso!");
 
-        return redirect()->route('reportListPositionDescription');
+        return redirect()->route('reportListPositionDescription', ['interviewed' => 'leader']);
     }
 
     public function exportXLSX()
