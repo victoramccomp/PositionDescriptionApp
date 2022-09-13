@@ -411,5 +411,7 @@
         })
     </script>
     @endauth
+
+    @yield('script')
 </body>
 </html>

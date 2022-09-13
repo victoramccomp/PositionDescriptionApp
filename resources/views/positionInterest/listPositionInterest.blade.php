@@ -56,7 +56,7 @@
                 @if( $positionInterest->document_type === 'registration' )
                     <div>Matrícula</div>
                 @elseif ( $positionInterest->document_type === 'cpf' )
-                    <div>Matrícula</div>
+                    <div>CPF</div>
                 @else
                     <div>E-mail</div>
                 @endif

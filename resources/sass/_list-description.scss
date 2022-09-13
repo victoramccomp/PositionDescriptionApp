@@ -52,9 +52,9 @@
       display: block;
       width: 0;
       height: 0;
-      border-top: $size solid #A9A9A9;
-      border-left: $size solid rgba(#fff, 0);
-      border-right: $size solid rgba(#fff, 0);
+      border-left: $size solid #A9A9A9;
+      border-top: $size solid rgba(#fff, 0);
+      border-bottom: $size solid rgba(#fff, 0);
 
       transition: .45s ease;
     }

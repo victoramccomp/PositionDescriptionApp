@@ -150,43 +150,6 @@ class PositionDescriptionController extends Controller
                     $query = $query->whereBetween('created_at', [ $request->start, $request->end ]);
                 }
 
-                // check search
-                if ( $request->has('search') && ! empty( $request->input('search') ) ) {
-                    $query = $query->whereHas('position', function($_query) use ($request) {
-                        $_query->where('description', 'LIKE', '%' . $request->search . '%');
-                    });
-
-                    $query = $query->OrWhereHas('DEPGrade', function($_query) use ($request) {
-                        $_query->join('grade_course', 'grade_course.id', '=', 'dep_grade.grade_id')
-                            ->where('grade_course.description', 'LIKE', '%' . $request->search . '%');
-                    });
-
-                    $query = $query->OrWhereHas('DEPCompetence', function($_query) use ($request) {
-                        $_query->join('competence', 'competence.id', '=', 'dep_competence.competence_id')
-                            ->where('competence.description', 'LIKE', '%' . $request->search . '%');
-                    });
-
-                    $query = $query->OrWhereHas('DEPLanguage', function($_query) use ($request) {
-                        $_query->join('language', 'language.id', '=', 'dep_language.language_id')
-                            ->where('language.description', 'LIKE', '%' . $request->search . '%');
-                    });
-
-                    // $query = $query->OrWhereHas('depMainTarget', function($_query) use ($request) {
-                    //     $_query->join('dep_maintarget', 'main_target.id', '=', 'dep_maintarget.maintarget_id')
-                    //         ->where('main_target.description', 'LIKE', '%' . $request->search . '%');
-                    // });
-
-                    $query = $query->OrWhere('restrictions', 'LIKE', '%' . $request->search . '%');
-                }
-
-                // check interviewed
-                if ( ! Auth::check() ) {
-                    $query = $query->whereIn( 'interviewed', [ 'leader' ] );
-                    $request->interviewed = 'leader';
-                } elseif ( $request->has('interviewed') && ! empty( $request->input('interviewed') ) ) {
-                    $query = $query->whereIn('interviewed', [ $request->interviewed ]);
-                }
-
                 // check directorate
                 if ( $request->has('directorate') && ! empty( $request->input('directorate') ) ) {
                     $query = $query->whereHas('position', function($_query) use ($request) {
@@ -205,6 +168,46 @@ class PositionDescriptionController extends Controller
                 if ( $request->has('is_dep_active') && ! empty( $request->input('is_dep_active') ) ) {
                     $isActive = $request->is_dep_active === 'true' ? 1 : 0;
                     $query = $query->where('is_activated', $isActive);
+                }
+
+                // check interviewed
+                if ( ! Auth::check() ) {
+                    $query = $query->whereIn( 'interviewed', [ 'leader' ] );
+                    $request->interviewed = 'leader';
+                } elseif ( $request->has('interviewed') && ! empty( $request->input('interviewed') ) ) {
+                    $query = $query->whereIn('interviewed', [ $request->interviewed ]);
+                }
+
+                // check search
+                if ( $request->has('search') && ! empty( $request->input('search') ) ) {
+                    $query = $query->where( function ($query) use ($request){
+
+                        $query->whereHas('position', function($_query) use ($request) {
+                            $_query->where('description', 'LIKE', '%' . $request->search . '%');
+                        });
+    
+                        $query->OrWhereHas('DEPGrade', function($_query) use ($request) {
+                            $_query->join('grade_course', 'grade_course.id', '=', 'dep_grade.grade_id')
+                                ->where('grade_course.description', 'LIKE', '%' . $request->search . '%');
+                        });
+    
+                        $query->OrWhereHas('DEPCompetence', function($_query) use ($request) {
+                            $_query->join('competence', 'competence.id', '=', 'dep_competence.competence_id')
+                                ->where('competence.description', 'LIKE', '%' . $request->search . '%');
+                        });
+    
+                        $query->OrWhereHas('DEPLanguage', function($_query) use ($request) {
+                            $_query->join('language', 'language.id', '=', 'dep_language.language_id')
+                                ->where('language.description', 'LIKE', '%' . $request->search . '%');
+                        });
+    
+                        // $query->OrWhereHas('depMainTarget', function($_query) use ($request) {
+                        //     $_query->join('dep_maintarget', 'main_target.id', '=', 'dep_maintarget.maintarget_id')
+                        //         ->where('main_target.description', 'LIKE', '%' . $request->search . '%');
+                        // });
+
+                        $query->OrWhere('restrictions', 'LIKE', '%' . $request->search . '%');
+                    });
                 }
 
                 return $query;

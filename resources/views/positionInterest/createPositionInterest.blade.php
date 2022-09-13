@@ -51,27 +51,27 @@
 
     <div class="d-flex js-interest-type">
         <div class="mr-3">
-          <input type="radio" id="cpf" value="cpf" name="documentType" data-id="{{ $keyA }}" checked><label for="cpf" class="ml-1">CPF</label>
+          <input onchange="showCpf(this)" type="radio" id="cpf" value="cpf" name="documentType" data-id="cpf-form" checked><label for="cpf" class="ml-1">CPF</label>
         </div>
         <div class="mr-3">
-          <input type="radio" id="registration" value="registration" data-id="{{ $keyB }}" name="documentType"><label for="registration" class="ml-1">Matrícula</label>
+          <input onchange="showRegistration(this)" type="radio" id="registration" value="registration" data-id="registration-form" name="documentType"><label for="registration" class="ml-1">Matrícula</label>
         </div>
         <div>
-          <input type="radio" id="email" value="email" data-id="{{ $keyC }}" name="documentType"><label for="email" class="ml-1">E-mail</label>
+          <input onchange="showEmail(this)" type="radio" id="email" value="email" data-id="email-form" name="documentType"><label for="email" class="ml-1">E-mail</label>
         </div>
     </div>
 
     <div class="js-interest-group">
         {{-- cpf --}}
-        <div id="{{ $keyA }}" class="input-group js-interest-field visible">
+        <div id="cpf-form" class="input-group js-interest-field cpf-field-toggle visible">
             <div class="input-group-prepend">
                 <span class="input-group-text">CPF</span>
             </div>
-            <input type="text" class="form-control mask-cpf" maxlength="14" name="cpf" placeholder="000.000.000-00" required>
+            <input type="text" class="form-control mask-cpf" maxlength="14" name="cpf" placeholder="000.000.000-00">
         </div>
     
         {{-- matricula --}}
-        <div id="{{ $keyB }}" class="input-group js-interest-field">
+        <div id="registration-form" class="input-group js-interest-field registration-field-toggle">
             <div class="input-group-prepend">
                 <span class="input-group-text">Matrícula</span>
             </div>
@@ -79,7 +79,7 @@
         </div>
     
         {{-- email --}}
-        <div id="{{ $keyC }}" class="input-group js-interest-field">
+        <div id="email-form" class="input-group js-interest-field email-field-toggle">
             <div class="input-group-prepend">
                 <span class="input-group-text">E-mail</span>
             </div>
@@ -106,4 +106,37 @@
 
 </form>
 
+@endsection
+
+@section('script')
+<script>
+
+
+function showEmail(x) {
+
+   if (x.checked) {
+        document.getElementById("cpf-form").style.visibility = "hidden";
+        document.getElementById("registration-form").style.visibility = "hidden";
+        document.getElementById("email-form").style.visibility = "visible";
+   }
+ }
+
+ function showCpf(x) {
+   if (x.checked) {
+        document.getElementById("cpf-form").style.visibility = "visible";
+        document.getElementById("registration-form").style.visibility = "hidden";
+        document.getElementById("email-form").style.visibility = "hidden";
+   }
+ }
+
+ function showRegistration(x) {
+   if (x.checked) {
+        document.getElementById("cpf-form").style.visibility = "hidden";
+        document.getElementById("registration-form").style.visibility = "visible";
+        document.getElementById("email-form").style.visibility = "hidden";
+   }
+ }
+
+
+</script>
 @endsection
